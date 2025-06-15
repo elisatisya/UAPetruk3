@@ -240,7 +240,7 @@ public:
         }
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-antreanKonfirmasi.push(baru);
+        antreanKonfirmasi.push(baru);
 
         Pengeluaran p = antreanKonfirmasi.front();
         cout << "\nKonfirmasi pengeluaran berikut?\n";
@@ -260,5 +260,33 @@ antreanKonfirmasi.push(baru);
             cout << "Pengeluaran dibatalkan.\n";
         }
         antreanKonfirmasi.pop();
+        cin.get();
+    }
+
+    void lihatSemuaPengeluaran() const {
+        system("cls");
+
+        cout << "=== Daftar Pengeluaran ===\n";
+        if (daftarPengeluaran.empty()) {
+            cout << "Belum ada data pengeluaran.\n";
+        } else {
+            cout << "-------------------------------------------------------------------------------\n";
+            cout << "| No. | Tanggal    | Keterangan                  |    Jumlah    |  Kategori   |\n";
+            cout << "-------------------------------------------------------------------------------\n";
+            double total = 0;
+            for (size_t i = 0; i < daftarPengeluaran.size(); ++i) {
+                const Pengeluaran& p = daftarPengeluaran[i];
+                cout << "| " << setw(3) << left << i + 1 << " "
+                     << "| " << setw(10) << left << p.tanggal << " "
+                     << "| " << setw(28) << left << p.keterangan << " "
+                     << "| " << setw(11) << right << fixed << setprecision(2) << p.jumlah << " "
+                     << "| " << setw(12) << left << p.kategori << "|\n";
+                total += p.jumlah;
+            }
+            cout << "-------------------------------------------------------------------------------\n";
+            cout << " TOTAL PENGELUARAN: Rp " << total << endl;
+            cout << "-------------------------------------------------------------------------------\n";
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.get();
     }
