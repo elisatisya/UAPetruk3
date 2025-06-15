@@ -57,3 +57,22 @@ int cariTanggal(const vector<Pengeluaran>& data, const string& target, bool cari
     }
     return hasil;
 }
+
+bool cekLogin(const string& username, const string& password) {
+    ifstream file("akun.txt");
+    string line;
+
+
+    while (getline(file, line)) {
+        size_t delimiter = line.find(';');
+        if (delimiter != string::npos) {
+            string user = line.substr(0, delimiter);
+            string pass = line.substr(delimiter + 1);
+            if (user == username && pass == password) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
