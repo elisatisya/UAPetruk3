@@ -76,3 +76,26 @@ bool cekLogin(const string& username, const string& password) {
     return false;
 }
 
+void registrasiAkun() {
+    string username, password;
+
+    system("cls");
+
+    gotoxy(45,9);
+    cout << "==== Registrasi Akun ====";
+    gotoxy(50,10);
+    cout << "Buat username: ";
+    cin >> username;
+    gotoxy(50,11);
+    cout << "Buat password: ";
+    cin >> password;
+
+    ofstream file("akun.txt", ios::app);
+    file << username << ";" << password << endl;
+    file.close();
+
+    gotoxy(40,12);
+    cout << "Akun berhasil dibuat! Silakan login.\n";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
+}
