@@ -242,7 +242,6 @@ public:
 
 antreanKonfirmasi.push(baru);
 
-        // Proses konfirmasi langsung
         Pengeluaran p = antreanKonfirmasi.front();
         cout << "\nKonfirmasi pengeluaran berikut?\n";
         cout << "Tanggal    : " << p.tanggal << endl;
