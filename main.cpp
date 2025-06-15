@@ -290,3 +290,51 @@ public:
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.get();
     }
+    void hitungTotalRangeTanggal() const {
+        system("cls");
+
+
+        if (daftarPengeluaran.empty()) {
+            cout << "Tidak ada data untuk dihitung.\n";
+            cin.get();
+            return;
+        }
+
+
+        string dari, sampai;
+        cout << "Masukkan tanggal awal (dd/mm/yyyy): ";
+        getline(cin, dari);
+        cout << "Masukkan tanggal akhir (dd/mm/yyyy): ";
+        getline(cin, sampai);
+
+
+        if (dari.length() != 10 || sampai.length() != 10) {
+            cout << "Format tanggal harus dd/mm/yyyy.\n";
+            cin.get();
+            return;
+        }
+
+
+        int indeksAwal = cariTanggal(daftarPengeluaran, dari, true);
+        int indeksAkhir = cariTanggal(daftarPengeluaran, sampai, false);
+
+
+        if (indeksAwal == -1 || indeksAkhir == -1 || indeksAwal > indeksAkhir) {
+            cout << "Rentang tanggal tidak valid atau tidak ditemukan.\n";
+            cin.get();
+            return;
+        }
+
+
+        double total = 0;
+        for (int i = indeksAwal; i <= indeksAkhir; ++i) {
+            total += daftarPengeluaran[i].jumlah;
+        }
+
+
+        cout << "\nTotal pengeluaran dari " << dari << " sampai " << sampai << " adalah: Rp" << fixed << setprecision(2) << total << endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
+    }
+
+
