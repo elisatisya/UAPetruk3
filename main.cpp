@@ -132,4 +132,24 @@ string prosesLogin() {
     }
 }
 
+class KosFinance {
+private:
+    vector<Pengeluaran> daftarPengeluaran;
+    stack<Pengeluaran> undoStack;
+    queue<Pengeluaran> antreanKonfirmasi;
+    string currentUsername;
+
+
+    string getFilename() const {
+        return "data_" + currentUsername + ".txt";
+    }
+
+
+public:
+    KosFinance(const string& username = "") : currentUsername(username) {}
+
+
+    void setUsername(const string& username) {
+        currentUsername = username;
+    }
 
