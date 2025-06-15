@@ -99,3 +99,37 @@ void registrasiAkun() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
 }
+
+string prosesLogin() {
+    string username, password;
+
+
+    system("cls");
+
+
+    gotoxy(50,9);
+    cout << "==== Login ====";
+    gotoxy(50,10);
+    cout << "Username: ";
+    cin >> username;
+    gotoxy(50,11);
+    cout << "Password: ";
+    cin >> password;
+
+
+    if (cekLogin(username, password)) {
+        gotoxy(40,12);
+        cout << "Login berhasil. Selamat datang, " << username << "!\n";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
+        return username;
+    } else {
+        gotoxy(40,12);
+        cout << "Login gagal. Username atau password salah.\n";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
+        return "";
+    }
+}
+
+
