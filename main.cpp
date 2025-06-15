@@ -282,6 +282,7 @@ public:
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.get();
     }
+
     void hitungTotalRangeTanggal() const {
         system("cls");
 
@@ -381,7 +382,7 @@ public:
         cin.get();
     }
 
-void undoPengeluaranTerakhir() {
+    void undoPengeluaranTerakhir() {
         system("cls");
 
         if (undoStack.empty()) {
@@ -469,6 +470,7 @@ void undoPengeluaranTerakhir() {
         cin.get();
     }
 };
+
 void tampilkanMenu() {
     system("cls");
     gotoxy(36, 6);  cout << "=======================================================";
@@ -478,3 +480,12 @@ void tampilkanMenu() {
     gotoxy(36,10);  cout << "| 2. Lihat Semua Pengeluaran                          |";
     gotoxy(36,11);  cout << "| 3. Hapus Pengeluaran                                |";
     gotoxy(36,12);  cout << "| 4. Total Pengeluaran Berdasarkan Rentang Tanggal    |";
+    gotoxy(36,13);  cout << "| 5. Urutkan Pengeluaran Harian (Terkecil ke Terbesar)|";
+    gotoxy(36,14);  cout << "| 6. Tampilkan Pengeluaran Terbesar                   |";
+    gotoxy(36,15);  cout << "| 7. Undo Pengeluaran Terakhir                        |";
+    gotoxy(36,16);  cout << "| 8. Tampilkan Statistik Pengeluaran per Kategori     |";
+    gotoxy(36,17);  cout << "| 9. Keluar                                           |";
+    gotoxy(36,18);  cout << "=======================================================";
+    gotoxy(36,19);  cout << "Pilih menu (1-9): ";
+}
+
