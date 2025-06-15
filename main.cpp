@@ -567,3 +567,25 @@ switch (pilihan) {
             case 6:
                 aplikasi.tampilkanPengeluaranTerbesar();
                 break;
+            case 7:
+                aplikasi.undoPengeluaranTerakhir();
+                break;
+            case 8:
+                aplikasi.tampilkanStatistikKategori();
+                break;
+            case 9:
+                aplikasi.simpanDataPengeluaran();
+                cout << "Terima kasih telah menggunakan KosFinance!\n";
+                break;
+            default:
+                system("cls");
+                cout << "Pilihan tidak valid. Silakan coba lagi.\n";
+                cin.get();
+        }
+
+
+    } while (pilihan != 9);
+
+
+    return 0;
+}
