@@ -240,5 +240,26 @@ public:
         }
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+antreanKonfirmasi.push(baru);
 
-
+        // Proses konfirmasi langsung
+        Pengeluaran p = antreanKonfirmasi.front();
+        cout << "\nKonfirmasi pengeluaran berikut?\n";
+        cout << "Tanggal    : " << p.tanggal << endl;
+        cout << "Keterangan : " << p.keterangan << endl;
+        cout << "Jumlah     : Rp" << fixed << setprecision(2) << p.jumlah << endl;
+        cout << "Kategori   : " << p.kategori << endl;
+        cout << "Konfirmasi pengeluaran ini? (y/n): ";
+        char pilih;
+        cin >> pilih;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        if (pilih == 'y' || pilih == 'Y') {
+            daftarPengeluaran.push_back(p);
+            cout << "Pengeluaran berhasil ditambahkan!\n";
+            simpanDataPengeluaran();
+        } else {
+            cout << "Pengeluaran dibatalkan.\n";
+        }
+        antreanKonfirmasi.pop();
+        cin.get();
+    }
