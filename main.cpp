@@ -224,6 +224,21 @@ public:
         } while(!vJ);
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+        cout << "Pilih kategori:\n"
+             << "1. Makanan\n2. Minuman\n3. Transportasi\n4. Belanja\n5. Lainnya\n";
+        cout << "Pilihan (1-5): ";
+        int kp; cin >> kp;
+        switch(kp){
+            case 1: baru.kategori="Makanan"; break;
+            case 2: baru.kategori="Minuman"; break;
+            case 3: baru.kategori="Transportasi"; break;
+            case 4: baru.kategori="Belanja"; break;
+            case 5: baru.kategori="Lainnya"; break;
+            default:
+                cout << "Pilihan tidak valid, kategori di-set ke 'Lainnya'.\n";
+                baru.kategori = "Lainnya";
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 
 
