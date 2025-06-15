@@ -152,4 +152,12 @@ public:
     void setUsername(const string& username) {
         currentUsername = username;
     }
+    void simpanDataPengeluaran() const {
+        ofstream file(getFilename());
+        for (const auto& p : daftarPengeluaran) {
+            file << p.tanggal << ';' << p.keterangan << ';' << p.jumlah << ';' << p.kategori << '\n';
+        }
+    }
+
+
 
