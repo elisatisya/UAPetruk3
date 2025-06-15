@@ -489,3 +489,45 @@ void tampilkanMenu() {
     gotoxy(36,19);  cout << "Pilih menu (1-9): ";
 }
 
+void tampilkanAwal() {
+    system("cls");
+    gotoxy(44, 8);  cout << "=======================================";
+    gotoxy(44, 9);  cout << "|     Selamat Datang di KosFinance    |";
+    gotoxy(44, 10); cout << "=======================================";
+    gotoxy(44, 11); cout << "| 1. Login                            |";
+    gotoxy(44, 12); cout << "| 2. Registrasi Akun                  |";
+    gotoxy(44, 13); cout << "| 3. Keluar                           |";
+    gotoxy(44, 14); cout << "=======================================";
+    gotoxy(44, 15); cout << "Pilih opsi (1-3): ";
+}
+
+int main() {
+    int pilihAuth;
+    string currentUsername = "";
+    KosFinance aplikasi;
+
+    do {
+        tampilkanAwal();
+        gotoxy(44 + strlen("Pilih opsi (1-3): "), 15);
+        cin >> pilihAuth;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        switch (pilihAuth) {
+            case 1:
+                currentUsername = prosesLogin();
+                if (!currentUsername.empty()) {
+                    aplikasi.setUsername(currentUsername);
+                    aplikasi.muatDataPengeluaran();
+                }
+                 break;
+            case 2:
+                registrasiAkun();
+                break;
+            case 3:
+                cout << "Keluar dari aplikasi.\n";
+                return 0;
+            default:
+                cout << "Pilihan tidak valid. Coba lagi.\n";
+                cin.get();
+        }
+    } while (currentUsername.empty());
