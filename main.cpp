@@ -103,9 +103,7 @@ void registrasiAkun() {
 string prosesLogin() {
     string username, password;
 
-
     system("cls");
-
 
     gotoxy(50,9);
     cout << "==== Login ====";
@@ -115,7 +113,6 @@ string prosesLogin() {
     gotoxy(50,11);
     cout << "Password: ";
     cin >> password;
-
 
     if (cekLogin(username, password)) {
         gotoxy(40,12);
@@ -144,10 +141,8 @@ private:
         return "data_" + currentUsername + ".txt";
     }
 
-
 public:
     KosFinance(const string& username = "") : currentUsername(username) {}
-
 
     void setUsername(const string& username) {
         currentUsername = username;
@@ -180,7 +175,6 @@ public:
         Pengeluaran baru;
         system("cls");
 
-
         bool vT = false;
         do {
             cout << "Masukkan tanggal (dd/mm/yyyy): " << endl;
@@ -194,7 +188,6 @@ public:
             else cout << "Format tanggal harus dd/mm/yyyy dan berupa angka.\n";
         } while(!vT);
 
-
         bool vK = false;
         do {
             cout << "Masukkan keterangan: ";
@@ -204,7 +197,6 @@ public:
                             [](char c){ return isalpha(c)||isspace(c); });
             if(!vK) cout << "Keterangan harus berupa huruf/spasi (string) dan tidak boleh kosong!\n";
         } while(!vK);
-
 
         bool vJ = false;
         do {
@@ -293,13 +285,11 @@ public:
     void hitungTotalRangeTanggal() const {
         system("cls");
 
-
         if (daftarPengeluaran.empty()) {
             cout << "Tidak ada data untuk dihitung.\n";
             cin.get();
             return;
         }
-
 
         string dari, sampai;
         cout << "Masukkan tanggal awal (dd/mm/yyyy): ";
@@ -307,24 +297,20 @@ public:
         cout << "Masukkan tanggal akhir (dd/mm/yyyy): ";
         getline(cin, sampai);
 
-
         if (dari.length() != 10 || sampai.length() != 10) {
             cout << "Format tanggal harus dd/mm/yyyy.\n";
             cin.get();
             return;
         }
 
-
         int indeksAwal = cariTanggal(daftarPengeluaran, dari, true);
         int indeksAkhir = cariTanggal(daftarPengeluaran, sampai, false);
-
 
         if (indeksAwal == -1 || indeksAkhir == -1 || indeksAwal > indeksAkhir) {
             cout << "Rentang tanggal tidak valid atau tidak ditemukan.\n";
             cin.get();
             return;
         }
-
 
         double total = 0;
         for (int i = indeksAwal; i <= indeksAkhir; ++i) {
@@ -337,4 +323,61 @@ public:
         cin.get();
     }
 
+    void urutkanPengeluaranHarian() {
+        system("cls");
+
+        if (daftarPengeluaran.empty()) {
+            cout << "Belum ada data pengeluaran.\n";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.get();
+            return;
+        }
+
+        vector<Pengeluaran> pengeluaranHarian = daftarPengeluaran;
+        sort(pengeluaranHarian.begin(), pengeluaranHarian.end(),
+             [](const Pengeluaran& a, const Pengeluaran& b) {
+                 return a.jumlah < b.jumlah;
+             });
+             
+        cout << "\n=== Urutan Pengeluaran Harian (Terkecil ke Terbesar) ===\n";
+        cout << "--------------------------------------------------------------------------------\n";
+        cout << "| No. | Tanggal    | Keterangan                   | Jumlah       | Kategori    |\n";
+        cout << "--------------------------------------------------------------------------------\n";
+
+        for (size_t i = 0; i < pengeluaranHarian.size(); ++i) {
+            cout << "| " << setw(3) << i + 1 << " ";
+            cout << "| " << setw(10) << pengeluaranHarian[i].tanggal << " ";
+            cout << "| " << setw(28) << pengeluaranHarian[i].keterangan << " ";
+            cout << "| " << setw(12) << fixed << setprecision(2) << pengeluaranHarian[i].jumlah << " ";
+            cout << "| " << setw(12) << pengeluaranHarian[i].kategori << " |\n";
+        }
+        cout << "--------------------------------------------------------------------------------\n";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
+    }
+
+    void tampilkanPengeluaranTerbesar() {
+        system("cls");
+        cout << "=== Pengeluaran Terbesar ===\n";
+        if (daftarPengeluaran.empty()) {
+            cout << "Belum ada data pengeluaran.\n";
+        } else {
+            auto it = max_element(daftarPengeluaran.begin(), daftarPengeluaran.end(),
+                [](const Pengeluaran& a, const Pengeluaran& b) {
+                    return a.jumlah < b.jumlah;
+                });
+            cout << "-------------------------------------------------------------------------------\n";
+            cout << "| No. | Tanggal    | Keterangan                   |   Jumlah    |  Kategori   |\n";
+            cout << "-------------------------------------------------------------------------------\n";
+            cout << "| " << setw(3) << 1 << " "
+                 << "| " << setw(10) << left << it->tanggal << " "
+                 << "| " << setw(28) << left << it->keterangan << " "
+                 << "| " << setw(11) << right << fixed << setprecision(2) << it->jumlah << " "
+                 << "| " << setw(12) << left << it->kategori << "|\n";
+            cout << "-------------------------------------------------------------------------------\n";
+        }
+       
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
+    }
 
