@@ -531,3 +531,10 @@ int main() {
                 cin.get();
         }
     } while (currentUsername.empty());
+
+    int pilihan;
+    do {
+        tampilkanMenu();
+        gotoxy(38 + strlen("Pilih menu (1-9): "), 19);
+        cin >> pilihan;
+
