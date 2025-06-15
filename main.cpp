@@ -381,3 +381,32 @@ public:
         cin.get();
     }
 
+void undoPengeluaranTerakhir() {
+        system("cls");
+
+        if (undoStack.empty()) {
+            cout << "Tidak ada pengeluaran yang bisa di-undo.\n";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.get();
+            return;
+        }
+
+        Pengeluaran terakhir = undoStack.top();
+        undoStack.pop();
+
+        auto it = find_if(daftarPengeluaran.begin(), daftarPengeluaran.end(),
+            [&](const Pengeluaran& p) {
+                return p.tanggal == terakhir.tanggal &&
+                       p.keterangan == terakhir.keterangan &&
+                       abs(p.jumlah - terakhir.jumlah) < 0.01;
+            });
+
+        if (it != daftarPengeluaran.end()) {
+            daftarPengeluaran.erase(it);
+            cout << "Pengeluaran terakhir berhasil di-undo.\n";
+        } else {
+            cout << "Gagal undo: data tidak ditemukan di daftar utama.\n";
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
+    }
