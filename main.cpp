@@ -159,5 +159,21 @@ public:
         }
     }
 
+    void muatDataPengeluaran() {
+        daftarPengeluaran.clear();
+        ifstream file(getFilename());
+        string line;
+        while (getline(file, line)) {
+            Pengeluaran p;
+            stringstream ss(line);
+            getline(ss, p.tanggal, ';');
+            getline(ss, p.keterangan, ';');
+            string jumlahStr;
+            getline(ss, jumlahStr, ';');
+            p.jumlah = stod(jumlahStr);
+            getline(ss, p.kategori, ';');
+            daftarPengeluaran.push_back(p);
+        }
+    }
 
 
