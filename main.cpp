@@ -410,3 +410,62 @@ void undoPengeluaranTerakhir() {
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.get();
     }
+
+    void tampilkanStatistikKategori() const {
+        system("cls");
+
+
+        if(daftarPengeluaran.empty()){
+            cout << "Belum ada data.\n";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.get();
+            return;
+        }
+        map<string,double> mp; double tot=0;
+        for(auto &p: daftarPengeluaran){
+            mp[p.kategori] += p.jumlah;
+            tot += p.jumlah;
+        }
+        cout << "\n=== Statistik per Kategori ===\n";
+        for(auto &it: mp){
+            double pct = it.second/tot*100;
+            cout << it.first << ": Rp" << fixed << setprecision(2) << it.second
+                 << " ("<<setprecision(1) << pct << "%)\n";
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
+    }
+
+    void hapusPengeluaran() {
+        system("cls");
+        cout << "=== Hapus Pengeluaran ===\n";
+        if (daftarPengeluaran.empty()) {
+            cout << "Belum ada data pengeluaran.\n";
+        } else {
+            cout << "-------------------------------------------------------------------------------\n";
+            cout << "| No. | Tanggal    | Keterangan                   |    Jumlah   |   Kategori  |\n";
+            cout << "-------------------------------------------------------------------------------\n";
+            for (size_t i = 0; i < daftarPengeluaran.size(); ++i) {
+                const Pengeluaran& p = daftarPengeluaran[i];
+                cout << "| " << setw(3) << right << i + 1 << " "
+                     << "| " << setw(10) << left << p.tanggal << " "
+                     << "| " << setw(28) << left << p.keterangan << " "
+                     << "| " << setw(11) << right << fixed << setprecision(2) << p.jumlah << " "
+                     << "| " << setw(12) << left << p.kategori << "|\n";
+            }
+            cout << "-------------------------------------------------------------------------------\n";
+            cout << "Masukkan nomor pengeluaran yang ingin dihapus: ";
+            size_t idx;
+            cin >> idx;
+            if (idx < 1 || idx > daftarPengeluaran.size()) {
+                cout << "Nomor tidak valid.\n";
+            } else {
+                daftarPengeluaran.erase(daftarPengeluaran.begin() + idx - 1);
+                cout << "Pengeluaran berhasil dihapus.\n";
+                simpanDataPengeluaran();
+            }
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
+    }
+};
