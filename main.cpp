@@ -469,3 +469,12 @@ void undoPengeluaranTerakhir() {
         cin.get();
     }
 };
+void tampilkanMenu() {
+    system("cls");
+    gotoxy(36, 6);  cout << "=======================================================";
+    gotoxy(36, 7);  cout << "| KosFinance: Aplikasi Pengelola Pengeluaran Anak Kos |";
+    gotoxy(36, 8);  cout << "=======================================================";
+    gotoxy(36, 9);  cout << "| 1. Tambah Pengeluaran                               |";
+    gotoxy(36,10);  cout << "| 2. Lihat Semua Pengeluaran                          |";
+    gotoxy(36,11);  cout << "| 3. Hapus Pengeluaran                                |";
+    gotoxy(36,12);  cout << "| 4. Total Pengeluaran Berdasarkan Rentang Tanggal    |";
