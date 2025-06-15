@@ -537,4 +537,13 @@ int main() {
         tampilkanMenu();
         gotoxy(38 + strlen("Pilih menu (1-9): "), 19);
         cin >> pilihan;
-
+    
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            system("cls");
+            cout << "Input tidak valid. Masukkan angka pilihan menu.\n";
+            cin.get();
+            continue;
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
