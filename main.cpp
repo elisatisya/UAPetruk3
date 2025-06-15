@@ -22,3 +22,9 @@ void gotoxy(int x, int y) {
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
+struct Pengeluaran {
+    string tanggal;
+    string keterangan;
+    string kategori;
+    double jumlah;
+};
