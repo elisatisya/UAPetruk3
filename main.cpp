@@ -177,8 +177,7 @@ public:
 
         bool vT = false;
         do {
-            cout << "Masukkan tanggal (dd/mm/yyyy): " << endl;
-            cout << "Format tanggal harus dd/mm/yyyy dan berupa angka" << endl;
+            cout << "Masukkan tanggal, harus angka dan sesuai format (dd/mm/yyyy): " << endl;
             getline(cin, baru.tanggal);
             string &t = baru.tanggal;
             if(t.size()==10 && isdigit(t[0])&&isdigit(t[1])&&t[2]=='/' &&
@@ -209,7 +208,7 @@ public:
                 }
             }
             else {
-                cout << "Jumlah harus berupa angka (float)!\n";
+                cout << "Jumlah harus berupa angka!\n";
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
