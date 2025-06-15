@@ -176,4 +176,54 @@ public:
         }
     }
 
+    void tambahPengeluaran() {
+        Pengeluaran baru;
+        system("cls");
+
+
+        bool vT = false;
+        do {
+            cout << "Masukkan tanggal (dd/mm/yyyy): " << endl;
+            cout << "Format tanggal harus dd/mm/yyyy dan berupa angka" << endl;
+            getline(cin, baru.tanggal);
+            string &t = baru.tanggal;
+            if(t.size()==10 && isdigit(t[0])&&isdigit(t[1])&&t[2]=='/' &&
+               isdigit(t[3])&&isdigit(t[4])&&t[5]=='/' &&
+               isdigit(t[6])&&isdigit(t[7])&&isdigit(t[8])&&isdigit(t[9]))
+                vT = true;
+            else cout << "Format tanggal harus dd/mm/yyyy dan berupa angka.\n";
+        } while(!vT);
+
+
+        bool vK = false;
+        do {
+            cout << "Masukkan keterangan: ";
+            getline(cin, baru.keterangan);
+            vK = !baru.keterangan.empty() &&
+                     all_of(baru.keterangan.begin(), baru.keterangan.end(),
+                            [](char c){ return isalpha(c)||isspace(c); });
+            if(!vK) cout << "Keterangan harus berupa huruf/spasi (string) dan tidak boleh kosong!\n";
+        } while(!vK);
+
+
+        bool vJ = false;
+        do {
+            cout << "Masukkan jumlah pengeluaran: ";
+            if(cin >> baru.jumlah) {
+                if (baru.jumlah > 0) {
+                    vJ = true;
+                } else {
+                    cout << "Jumlah harus lebih besar dari nol!\n";
+                }
+            }
+            else {
+                cout << "Jumlah harus berupa angka (float)!\n";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+        } while(!vJ);
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+
+
 
