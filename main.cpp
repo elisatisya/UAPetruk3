@@ -547,3 +547,23 @@ int main() {
             continue;
         }
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+switch (pilihan) {
+            case 1:
+                aplikasi.tambahPengeluaran();
+                break;
+            case 2:
+                aplikasi.lihatSemuaPengeluaran();
+                break;
+            case 3:
+                aplikasi.hapusPengeluaran();
+                break;
+            case 4:
+                aplikasi.hitungTotalRangeTanggal();
+                break;
+            case 5:
+                aplikasi.urutkanPengeluaranHarian();
+                break;
+            case 6:
+                aplikasi.tampilkanPengeluaranTerbesar();
+                break;
